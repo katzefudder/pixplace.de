@@ -1,89 +1,110 @@
-/* Same look as katzefudder.de (dark only), with the Pixplace mint accent. */
+/* Pixplace: a press desk / contact sheet look. Neutral graphite like a photo editor (no colour
+   cast next to photos), paper-white type, one red accent. Condensed grotesk for headlines,
+   mono for everything that is metadata: labels, codes, prices, frame numbers. Dark only. */
 :root {
   color-scheme: dark;
-  --bg: #0b0c0f;
-  --panel: rgba(255, 255, 255, 0.06);
-  --panel2: rgba(255, 255, 255, 0.1);
-  --text: rgba(255, 255, 255, 0.92);
-  --muted: rgba(255, 255, 255, 0.7);
-  --muted2: rgba(255, 255, 255, 0.55);
-  --stroke: rgba(255, 255, 255, 0.14);
-  --stroke2: rgba(255, 255, 255, 0.24);
-  --shadow: 0 18px 70px rgba(0, 0, 0, 0.45);
-  --radius: 18px;
-  --radius2: 24px;
-  --max: 1120px;
-  --accent: #8cffdc;
-  --accent-soft: rgba(140, 255, 220, 0.35);
+  --bg: #151515;
+  --bg2: #1c1c1c;        /* strips, mats behind screenshots */
+  --bg3: #232323;
+  --text: #ececea;
+  --muted: #a3a3a0;
+  --muted2: #7a7a77;
+  --line: #2c2c2c;
+  --line2: #3d3d3d;
+  --accent: #e5412d;     /* jersey red, the Captioner icon's typewriter */
+  --accent-text: #ff6a55; /* the red on dark text sizes, for contrast */
+  --max: 1200px;
+  --gutter: 16px;
+
+  --sans: 'Archivo Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 80px; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 72px; }
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg);
-  background-image:
-    radial-gradient(800px 520px at 85% 0%, rgba(140, 255, 220, 0.08), transparent 60%),
-    radial-gradient(640px 380px at 12% 8%, rgba(120, 170, 255, 0.06), transparent 62%);
-  background-repeat: no-repeat;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
-@media (max-width: 768px) { body { background-image: none; } }
 
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 button { font-family: inherit; color: inherit; -webkit-tap-highlight-color: transparent; }
+::selection { background: var(--accent); color: #fff; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-.container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
-.section { padding: 72px 0; }
-.section--line { border-top: 1px solid var(--stroke); }
-@media (max-width: 760px) { .section { padding: 48px 0; } }
+.container { width: min(var(--max), calc(100% - 2 * var(--gutter))); margin: 0 auto; }
+@media (min-width: 761px) { :root { --gutter: 32px; } }
+.section { padding: 88px 0; }
+.section--line { border-top: 1px solid var(--line); }
+@media (max-width: 760px) { .section { padding: 56px 0; } }
 
-h1, h2, h3 { margin: 0 0 12px; letter-spacing: -0.02em; }
-h1 { font-size: clamp(34px, 4.2vw, 56px); line-height: 1.05; }
-h2 { font-size: clamp(26px, 3vw, 34px); }
-h3 { font-size: 20px; }
+/* condensed, tight headlines */
+h1, h2, h3 { margin: 0 0 14px; font-weight: 750; font-stretch: 78%; letter-spacing: -0.01em; line-height: 1.02; }
+h1 { font-size: clamp(44px, 6.4vw, 92px); letter-spacing: -0.02em; }
+h1, h2 { overflow-wrap: break-word; hyphens: auto; }
+h2 { font-size: clamp(32px, 3.6vw, 48px); }
+h3 { font-size: 24px; font-stretch: 85%; line-height: 1.1; }
 
-.lead { font-size: 18px; line-height: 1.6; }
-.muted { color: var(--muted); line-height: 1.6; }
-.tiny { font-size: 12px; color: var(--muted2); }
-.kicker { text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--muted); margin: 0 0 10px; }
-.link { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.lead { font-size: 20px; line-height: 1.5; max-width: 54ch; }
+.muted { color: var(--muted); }
+.tiny { font-size: 13px; color: var(--muted2); }
 
-code {
-  font-size: 0.92em;
-  padding: 1px 6px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--accent);
+/* metadata label: a field name in an IPTC panel, not a marketing kicker */
+.label {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 18px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--muted2);
+}
+.label b { font-weight: 500; color: var(--accent-text); }
+
+.link { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.link:hover { color: var(--accent-text); }
+
+code, kbd {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  padding: 1px 5px;
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  background: var(--bg2);
+  color: var(--text);
   word-break: break-word;
 }
 
 .btn {
-  display: inline-block;
-  border: 1px solid var(--stroke2);
-  background: rgba(255, 255, 255, 0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid var(--line2);
+  background: transparent;
   color: var(--text);
-  padding: 10px 14px;
-  border-radius: 14px;
+  padding: 10px 16px;
+  border-radius: 2px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 15px;
   text-align: center;
+  transition: border-color .15s, background-color .15s, color .15s;
 }
-.btn:hover { background: rgba(255, 255, 255, 0.16); }
-.btn--primary { background: var(--accent); border-color: var(--accent); color: #07120e; }
-.btn--primary:hover { background: #b3ffe8; }
-.btn--ghost { background: transparent; border-color: var(--stroke); }
-.btn--wide { padding: 12px 18px; border-radius: 16px; }
-.btn--small { padding: 6px 12px; border-radius: 10px; font-size: 13px; }
+.btn:hover { border-color: var(--text); }
+.btn--primary { background: var(--text); border-color: var(--text); color: #111; }
+.btn--primary:hover { background: #fff; border-color: #fff; }
+.btn--small { min-height: 32px; padding: 4px 10px; font-size: 13px; }
 
-.card {
-  background: var(--panel);
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius2);
-  padding: 20px;
-  margin-bottom: 24px;
-  box-shadow: var(--shadow);
-}
+/* screenshots and photos sit on a mat, like prints on a light table */
+.mat { background: var(--bg2); border: 1px solid var(--line); padding: 10px; }
+.mat img { width: 100%; height: auto; }

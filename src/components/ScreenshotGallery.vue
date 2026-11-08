@@ -10,9 +10,10 @@
       </figure>
     </template>
     <template v-else>
-      <a v-for="img in images" :key="img.src" class="pswp-item thumb" :href="img.src"
+      <a v-for="(img, i) in images" :key="img.src" class="pswp-item thumb" :href="img.src"
         :data-pswp-width="img.width" :data-pswp-height="img.height" :title="img.alt[lang]" target="_blank">
-        <img :src="img.thumb" :alt="img.alt[lang]" loading="lazy" />
+        <span class="thumb__img"><img :src="img.thumb" :alt="img.alt[lang]" loading="lazy" /></span>
+        <span class="thumb__no">{{ String(i + 1).padStart(2, '0') }}</span>
       </a>
     </template>
   </div>
@@ -45,43 +46,47 @@ onBeforeUnmount(() => lightbox?.destroy())
 </script>
 
 <style scoped>
+/* contact sheet: frames on a strip, numbered along the edge */
 .thumbs {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px;
-  margin-top: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px 10px;
+  margin-top: 20px;
+  padding: 12px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
 }
-.thumb {
+.thumb { display: block; }
+.thumb__img {
   display: block;
   aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: 12px;
-  border: 1px solid var(--stroke);
+  padding: 8px;
+  background: var(--bg);
+  border: 1px solid var(--line2);
+  transition: border-color .15s;
 }
-.thumb { background: rgba(0, 0, 0, 0.35); }
+.thumb:hover .thumb__img { border-color: var(--text); }
 /* screenshots have all kinds of formats: show them whole instead of a random crop */
-.thumb img { width: 100%; height: 100%; object-fit: contain; transition: transform .25s ease; }
-.thumb:hover img { transform: scale(1.04); }
+.thumb img { width: 100%; height: 100%; object-fit: contain; }
+.thumb__no { display: block; margin-top: 6px; font-family: var(--mono); font-size: 11px; color: var(--muted2); }
+.thumb:hover .thumb__no { color: var(--accent-text); }
+@media (max-width: 520px) { .thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 8px; } }
 
 .figures {
   display: grid;
   /* the two smaller screenshots share a row in the ratio of their aspect ratios */
   grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.87fr);
-  gap: 24px;
-  margin-top: 18px;
+  gap: 32px 24px;
+  margin-top: 24px;
 }
 .figure { margin: 0; min-width: 0; }
 .figure--wide { grid-column: 1 / -1; }
-.figure a { display: block; }
-.figure img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  border: 1px solid var(--stroke);
-  box-shadow: var(--shadow);
-}
+.figure a { display: block; background: var(--bg2); border: 1px solid var(--line); padding: 10px; transition: border-color .15s; }
+.figure a:hover { border-color: var(--line2); }
+.figure img { width: 100%; height: auto; }
 .figure figcaption { margin-top: 10px; font-size: 14px; }
 @media (max-width: 760px) {
   .figures { grid-template-columns: minmax(0, 1fr); }
+  .figure a { padding: 6px; }
 }
 </style>

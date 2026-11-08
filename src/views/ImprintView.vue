@@ -4,7 +4,7 @@
       <h1>Impressum</h1>
       <p v-if="lang === 'en'" class="muted">This page is available in German only.</p>
 
-      <div class="card">
+      <div class="legal__body">
         <p class="muted">Angaben gemäß § 5 DDG</p>
         <p>
           <strong>{{ OWNER.name }}</strong><br />
@@ -51,5 +51,7 @@ const { lang } = useLang()
 
 <style scoped>
 .legal { max-width: 760px; }
+.legal h1 { font-size: clamp(36px, 5vw, 56px); }
+.legal__body { margin-top: 32px; padding-top: 8px; border-top: 1px solid var(--line); }
 .legal p { line-height: 1.6; }
 </style>

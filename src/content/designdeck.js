@@ -70,6 +70,8 @@ export default {
   },
   matomoCategory: 'Design Deck',
   ogImage: { src: `${shots}/designdeck-grid.jpg`, width: 1600, height: 1067 },
+  // the app window on the home page
+  homeShot: { src: `${shots}/designdeck-app-text.jpg`, width: 2400, height: 1547 },
   prices: [
     { duration: { de: '1 Monat', en: '1 month' }, price: 3.99 },
     { duration: { de: '3 Monate', en: '3 months' }, price: 6.99 },

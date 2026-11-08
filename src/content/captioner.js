@@ -57,12 +57,27 @@ export default {
   },
   matomoCategory: 'Captioner',
   ogImage: { src: `${shots}/captioner-0.4-gallery.jpg`, width: 3510, height: 1840 },
+  // the app window on the home page
+  homeShot: { src: `${shots}/captioner-0.4-gallery.jpg`, width: 3510, height: 1840 },
   prices: [
     { duration: { de: '1 Monat', en: '1 month' }, price: 4.99 },
     { duration: { de: '3 Monate', en: '3 months' }, price: 11.99 },
     { duration: { de: '12 Monate', en: '12 months' }, price: 39.99 },
   ],
-  galleries: [{ id: 'captioner-screenshots', layout: 'grid', images: screenshots }],
+  // the main window large on top, the dialogs as a contact sheet further down
+  galleriesFirst: [{
+    id: 'captioner-main',
+    layout: 'figures',
+    images: [{
+      ...screenshots[0],
+      wide: true,
+      caption: {
+        de: 'Galerie mit Farbklassen und Sternen, rechts das Beschriftungspanel: Codes in der Beschreibung, darunter die fertige Bildunterschrift.',
+        en: 'The gallery with color labels and stars, the caption panel on the right: codes in the caption, the finished caption below.',
+      },
+    }],
+  }],
+  galleries: [{ id: 'captioner-screenshots', layout: 'grid', images: screenshots.slice(1) }],
 
   de: {
     title: 'Pixplace Captioner – Bilder beschriften für Sportfotografen | macOS & Windows',
@@ -147,10 +162,11 @@ export default {
       },
     ],
     galleryTitles: {
+      'captioner-main': { title: 'Ein Blick in die App' },
       'captioner-screenshots': {
         title: 'Screenshots',
         text:
-          'Hauptfenster mit Beschriftungspanel, Großansicht mit Metadaten, Template, Ort wählen mit Karte, Suchen und ' +
+          'Großansicht mit Metadaten, Template, Ort wählen mit Karte, Suchen und ' +
           'Ersetzen, Roster-Editor, Umbenennen, Einstellungen, Tastenkürzel und Lizenz (Version 0.4).',
       },
     },
@@ -250,10 +266,11 @@ export default {
       },
     ],
     galleryTitles: {
+      'captioner-main': { title: 'A look at the app' },
       'captioner-screenshots': {
         title: 'Screenshots',
         text:
-          'The main window with the caption panel, the preview with metadata, the template dialog, the place picker with ' +
+          'The preview with metadata, the template dialog, the place picker with ' +
           'the map, find and replace across photos, the roster editor, renaming, settings, shortcuts and the license ' +
           'window (version 0.4).',
       },

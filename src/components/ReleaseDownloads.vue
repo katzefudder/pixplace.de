@@ -1,23 +1,25 @@
 <template>
   <div class="download">
-    <a class="btn btn--primary btn--wide" :href="release.dmg" @click="track('dmg')">
+    <a class="btn btn--primary" :href="release.dmg" @click="track('dmg')">
       {{ fill(t.download.dmg, { version: release.version }).replace('  ', ' ') }}
     </a>
-    <a class="btn btn--ghost btn--wide" :href="release.pkg" @click="track('pkg')">{{ t.download.pkg }}</a>
-    <a class="btn btn--ghost btn--wide" :href="release.exe" @click="track('exe')">{{ t.download.exe }}</a>
+    <a class="btn" :href="release.pkg" @click="track('pkg')">{{ t.download.pkg }}</a>
+    <a class="btn" :href="release.exe" @click="track('exe')">{{ t.download.exe }}</a>
+  </div>
+  <p class="tiny meta">
+    {{ t.download.trial }}<span v-if="release.date"> · {{ fill(t.download.published, { date: release.date }) }}</span>
+    · {{ fill(text.requirements, { minMacos: release.minMacos || '26' }) }}
+  </p>
+  <p v-if="text.extraLinks?.length" class="docs">
     <a
       v-for="link in text.extraLinks"
       :key="link.href"
-      class="btn btn--ghost btn--wide"
+      class="link"
       :href="link.href"
       target="_blank"
       rel="noopener"
       @click="track(link.track)"
     >{{ link.label }}</a>
-  </div>
-  <p class="tiny">
-    {{ t.download.trial }}<span v-if="release.date"> · {{ fill(t.download.published, { date: release.date }) }}</span>
-    · {{ fill(text.requirements, { minMacos: release.minMacos || '26' }) }}
   </p>
 </template>
 
@@ -74,5 +76,7 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.download { display: flex; gap: 10px; flex-wrap: wrap; margin: 22px 0 10px; }
+.download { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0 12px; }
+.docs { display: flex; gap: 6px 24px; flex-wrap: wrap; margin: 18px 0 0; font-size: 15px; }
+.meta { font-family: var(--mono); font-size: 12px; margin: 0; }
 </style>

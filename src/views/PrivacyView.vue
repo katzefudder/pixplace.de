@@ -4,7 +4,7 @@
       <h1>Datenschutzhinweise</h1>
       <p v-if="lang === 'en'" class="muted">This page is available in German only.</p>
 
-      <div class="card">
+      <div class="legal__body">
         <h2>Verantwortlicher</h2>
         <p>
           {{ OWNER.name }}, {{ OWNER.street }}, {{ OWNER.city }}<br />
@@ -85,7 +85,9 @@ const { lang } = useLang()
 
 <style scoped>
 .legal { max-width: 760px; }
-.legal h2 { font-size: 20px; margin-top: 22px; }
+.legal h1 { font-size: clamp(36px, 5vw, 56px); }
+.legal__body { margin-top: 32px; padding-top: 8px; border-top: 1px solid var(--line); }
+.legal h2 { font-size: 24px; margin-top: 36px; }
 .legal h2:first-child { margin-top: 0; }
 .legal p { line-height: 1.6; color: var(--muted); }
 </style>

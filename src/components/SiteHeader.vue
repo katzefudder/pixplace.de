@@ -2,7 +2,7 @@
   <header class="topbar">
     <div class="container topbar__inner">
       <RouterLink class="brand" :to="to('home')" @click="open = false">
-        <img src="../assets/pixplace-mark.svg" alt="" width="26" height="26" />
+        <img src="../assets/pixplace-mark.svg" alt="" width="22" height="22" />
         <span>pixplace</span>
       </RouterLink>
 
@@ -14,15 +14,17 @@
         aria-label="Menu"
         @click="open = !open"
       >
-        <span></span><span></span><span></span>
+        <span></span><span></span>
       </button>
 
       <nav id="site-nav" class="nav" :class="{ 'nav--open': open }" @click="open = false">
-        <RouterLink :to="to('captioner')">{{ t.nav.captioner }}</RouterLink>
-        <RouterLink :to="to('designdeck')">{{ t.nav.designdeck }}</RouterLink>
+        <RouterLink class="nav__page" :to="to('captioner')">{{ t.nav.captioner }}</RouterLink>
+        <RouterLink class="nav__page" :to="to('designdeck')">{{ t.nav.designdeck }}</RouterLink>
         <RouterLink :to="to('home', '#prices')">{{ t.nav.prices }}</RouterLink>
         <RouterLink :to="to('home', '#contact')">{{ t.nav.contact }}</RouterLink>
-        <RouterLink class="nav__lang" :to="other" :hreflang="lang === 'de' ? 'en' : 'de'">{{ t.langSwitch }}</RouterLink>
+        <RouterLink class="nav__lang" :to="other" :hreflang="lang === 'de' ? 'en' : 'de'" :title="t.langSwitch">
+          <span :class="{ on: lang === 'de' }">DE</span>/<span :class="{ on: lang === 'en' }">EN</span>
+        </RouterLink>
       </nav>
     </div>
   </header>
@@ -41,10 +43,8 @@ const open = ref(false)
   position: sticky;
   top: 0;
   z-index: 50;
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  background: rgba(10, 10, 14, 0.6);
-  border-bottom: 1px solid var(--stroke);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
 }
 .topbar__inner {
   position: relative;
@@ -52,40 +52,49 @@ const open = ref(false)
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  padding: 12px 0;
+  height: 60px;
 }
 .brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 700;
-  font-size: 19px;
+  font-weight: 750;
+  font-stretch: 85%;
+  font-size: 21px;
   letter-spacing: -0.01em;
 }
-.nav { display: flex; align-items: center; gap: 6px; color: var(--muted); }
-.nav a { padding: 8px 10px; border-radius: 12px; }
-.nav a:hover,
-.nav a.router-link-exact-active { background: var(--panel); color: var(--text); }
-.nav__lang { border: 1px solid var(--stroke); margin-left: 6px; }
+.nav { display: flex; align-items: center; gap: 28px; font-size: 15px; color: var(--muted); }
+.nav a { position: relative; padding: 18px 0; }
+.nav a:hover { color: var(--text); }
+.nav a.nav__page.router-link-active { color: var(--text); }
+.nav a.nav__page.router-link-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+}
+.nav__lang { font-family: var(--mono); font-size: 13px; color: var(--muted2); }
+.nav__lang .on { color: var(--text); }
 
 .burger {
   display: none;
   flex-direction: column;
   justify-content: center;
-  align-items: stretch;
-  gap: 5px;
-  width: 42px;
-  height: 42px;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
   padding: 0 10px;
-  border: 1px solid var(--stroke);
-  border-radius: 12px;
-  background: var(--panel);
+  border: 0;
+  background: none;
   cursor: pointer;
 }
-.burger span { display: block; height: 2px; background: var(--text); border-radius: 2px; transition: transform .2s, opacity .2s; }
-.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.burger span { display: block; width: 24px; height: 2px; background: var(--text); transition: transform .2s; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
 
 @media (max-width: 760px) {
   .burger { display: flex; }
@@ -93,17 +102,19 @@ const open = ref(false)
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 0;
+    left: calc(-1 * var(--gutter));
+    right: calc(-1 * var(--gutter));
     flex-direction: column;
     align-items: stretch;
-    gap: 4px;
-    padding: 10px;
-    background: rgba(10, 10, 14, 0.96);
-    border: 1px solid var(--stroke);
-    border-radius: 14px;
+    gap: 0;
+    padding: 4px var(--gutter) 12px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    font-size: 18px;
   }
+  .nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .nav a:last-child { border-bottom: 0; }
+  .nav a.nav__page.router-link-active::after { display: none; }
   .nav--open { display: flex; }
-  .nav__lang { margin-left: 0; }
 }
 </style>

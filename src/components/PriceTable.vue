@@ -34,15 +34,15 @@ function track(p) {
 </script>
 
 <style scoped>
-.prices { list-style: none; margin: 12px 0 14px; padding: 0; max-width: 420px; }
+.prices { list-style: none; margin: 16px 0 18px; padding: 0; max-width: 460px; border-top: 1px solid var(--line); }
 .prices li {
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  gap: 16px;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--stroke);
+  gap: 20px;
+  min-height: 52px;
+  border-bottom: 1px solid var(--line);
   color: var(--muted);
 }
-.prices strong { color: var(--text); font-variant-numeric: tabular-nums; }
+.prices strong { font-family: var(--mono); font-weight: 500; font-size: 15px; color: var(--text); font-variant-numeric: tabular-nums; text-align: right; }
 </style>

@@ -12,6 +12,18 @@ export default {
     lead:
       'Zwei Desktop-Apps für alles, was nach dem Spiel kommt: Bilder sichten und beschriften für Presse und Vereine, ' +
       'und daraus einen Instagram-Post machen, der nicht abgeschnitten wird.',
+    heroPhoto: {
+      alt: 'Eishockey, DEL 2: zwei Spieler im Zweikampf an der Bande, im Hintergrund unscharf das Spielfeld',
+      caption: 'Zweikampf an der Bande · DEL 2',
+      credit: 'Foto: Florian Dehn',
+    },
+    demo: {
+      typed: 'Zweikampf um den Puck #bi99# gegen #bn23#',
+      result: 'Zweikampf um den Puck -99- John Doe (Bietigheim Steelers) gegen -23- Marius Erk (EC Bad Nauheim)',
+      typedLabel: 'Getippt',
+      resultLabel: 'Gespeichert',
+    },
+    labels: { workflow: 'Ablauf', common: 'Für beide', prices: 'Preise', contact: 'Kontakt' },
     products: {
       captioner: {
         tagline: 'Sichten und beschriften',
@@ -61,6 +73,18 @@ export default {
     lead:
       'Two desktop apps for everything after the game: cull and caption photos for the press and clubs, then turn them ' +
       'into an Instagram post that doesn\'t get cropped.',
+    heroPhoto: {
+      alt: 'Ice hockey, DEL 2: two players battling along the boards, the rink blurred behind them',
+      caption: 'Battle along the boards · DEL 2',
+      credit: 'Photo: Florian Dehn',
+    },
+    demo: {
+      typed: 'Battle for the puck #bi99# vs #bn23#',
+      result: 'Battle for the puck -99- John Doe (Bietigheim Steelers) vs -23- Marius Erk (EC Bad Nauheim)',
+      typedLabel: 'Typed',
+      resultLabel: 'Saved',
+    },
+    labels: { workflow: 'Workflow', common: 'Both apps', prices: 'Pricing', contact: 'Contact' },
     products: {
       captioner: {
         tagline: 'Cull and caption',
