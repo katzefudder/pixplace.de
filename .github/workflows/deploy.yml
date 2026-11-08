@@ -1,0 +1,136 @@
+name: Build and deploy to Bunny
+
+# Builds the site and uploads dist/ to the Bunny storage zone behind www.pixplace.de.
+# Same approach as katzefudder.de (deploy-bunny-cdn.yaml): images only when changed.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      full_upload:
+        description: 'Upload all images (not only those changed in Git)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bunny-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # the push range (before..after) decides which images to upload
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci --ignore-scripts && npm run build
+
+      - name: Check the generated pages
+        run: |
+          set -euo pipefail
+          for page in index.html en/index.html captioner/index.html en/captioner/index.html \
+                      designdeck/index.html en/designdeck/index.html impressum/index.html \
+                      datenschutz/index.html 404.html sitemap.xml robots.txt; do
+            test -s "dist/${page}" || { echo "missing dist/${page}"; exit 1; }
+          done
+          grep -q 'hreflang="en"' dist/captioner/index.html
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      BUNNY_STORAGE_ZONE: ${{ secrets.BUNNY_STORAGE_ZONE }}
+      BUNNY_STORAGE_ACCESS_KEY: ${{ secrets.BUNNY_STORAGE_ACCESS_KEY }}
+      BUNNY_STORAGE_REGION: ${{ secrets.BUNNY_STORAGE_REGION }}
+      BUNNY_PULL_ZONE_ID: ${{ secrets.BUNNY_PULL_ZONE_ID }}
+      BUNNY_API_KEY: ${{ secrets.BUNNY_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Check secrets
+        run: |
+          if [ -z "${BUNNY_STORAGE_ZONE}" ] || [ -z "${BUNNY_STORAGE_ACCESS_KEY}" ]; then
+            echo "::error::BUNNY_STORAGE_ZONE and BUNNY_STORAGE_ACCESS_KEY are required"
+            exit 1
+          fi
+
+      - name: Determine changed images
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          FULL_UPLOAD: ${{ inputs.full_upload && 'true' || 'false' }}
+        run: |
+          set -euo pipefail
+          # public/images/** is copied 1:1 to dist/images; only images added or changed since
+          # the last deployed commit are uploaded, every other file always.
+          if [ "${FULL_UPLOAD}" = "true" ]; then
+            echo "UPLOAD_ALL_IMAGES=true" >> "${GITHUB_ENV}"; exit 0
+          fi
+          if [ -n "${BEFORE_SHA}" ] && git cat-file -e "${BEFORE_SHA}^{commit}" 2>/dev/null; then
+            BASE="${BEFORE_SHA}"
+          elif git rev-parse --verify --quiet HEAD~1 >/dev/null; then
+            BASE="HEAD~1"
+          else
+            echo "UPLOAD_ALL_IMAGES=true" >> "${GITHUB_ENV}"; exit 0
+          fi
+          git -c core.quotepath=off diff --name-only --diff-filter=ACMR "${BASE}" HEAD -- public/images \
+            | sed 's#^public/##' > "${RUNNER_TEMP}/changed-images.txt"
+          echo "Images changed since ${BASE}:"; cat "${RUNNER_TEMP}/changed-images.txt"
+          echo "UPLOAD_ALL_IMAGES=false" >> "${GITHUB_ENV}"
+
+      - name: Upload to Bunny Storage
+        working-directory: dist
+        run: |
+          set -euo pipefail
+          declare -A changed=()
+          if [ "${UPLOAD_ALL_IMAGES}" != "true" ]; then
+            while IFS= read -r line; do [ -n "${line}" ] && changed["${line}"]=1; done < "${RUNNER_TEMP}/changed-images.txt"
+          fi
+          HOST="storage.bunnycdn.com"
+          [ -n "${BUNNY_STORAGE_REGION}" ] && HOST="${BUNNY_STORAGE_REGION}.storage.bunnycdn.com"
+          while IFS= read -r -d '' file; do
+            rel="${file#./}"
+            if [ "${UPLOAD_ALL_IMAGES}" != "true" ] && [[ "${rel}" == images/* ]] && [ -z "${changed[${rel}]:-}" ]; then
+              continue
+            fi
+            echo "Uploading ${rel}"
+            curl --fail --silent --show-error --retry 5 --retry-all-errors \
+              --request PUT \
+              --header "AccessKey: ${BUNNY_STORAGE_ACCESS_KEY}" \
+              --header "Content-Type: $(file --brief --mime-type "${file}")" \
+              --data-binary "@${file}" \
+              "https://${HOST}/${BUNNY_STORAGE_ZONE}/${rel}"
+          done < <(find . -type f -print0)
+
+      - name: Purge pull zone
+        run: |
+          if [ -z "${BUNNY_PULL_ZONE_ID}" ] || [ -z "${BUNNY_API_KEY}" ]; then
+            echo "::warning::BUNNY_PULL_ZONE_ID or BUNNY_API_KEY not set, cache not purged"; exit 0
+          fi
+          curl --fail --silent --show-error --request POST \
+            --header "AccessKey: ${BUNNY_API_KEY}" \
+            "https://api.bunny.net/pullzone/${BUNNY_PULL_ZONE_ID}/purgeCache"
