@@ -26,6 +26,17 @@ export const ui = {
       mailBody:
         'Hallo,\n\nich möchte eine Lizenz für {product} ({duration}, {price}).\n\nName für den Lizenzschlüssel:\nRechnungsadresse:\n\nViele Grüße',
     },
+    consent: {
+      title: 'Reichweitenmessung',
+      text:
+        'Darf ich mit Matomo zählen, welche Seiten besucht und welche Apps heruntergeladen werden? Matomo läuft auf ' +
+        'meinem eigenen Server, setzt dafür Cookies, und die Daten gehen an niemanden weiter. Ohne Zustimmung wird ' +
+        'nichts gezählt.',
+      more: 'Mehr in den Datenschutzhinweisen',
+      accept: 'Zustimmen',
+      reject: 'Ablehnen',
+      settings: 'Cookie-Einstellungen',
+    },
     gallery: { open: 'Vergrößern' },
     notFound: { title: 'Seite nicht gefunden', back: 'Zur Startseite' },
   },
@@ -53,6 +64,16 @@ export const ui = {
       mailSubject: 'License {product} – {duration}',
       mailBody:
         'Hello,\n\nI would like a license for {product} ({duration}, {price}).\n\nName for the license key:\nBilling address:\n\nBest regards',
+    },
+    consent: {
+      title: 'Analytics',
+      text:
+        'May I use Matomo to count which pages are visited and which apps are downloaded? Matomo runs on my own ' +
+        'server, sets cookies for this and the data is not passed on to anyone. Without your consent nothing is counted.',
+      more: 'More in the privacy notice (German)',
+      accept: 'Accept',
+      reject: 'Decline',
+      settings: 'Cookie settings',
     },
     gallery: { open: 'Enlarge' },
     notFound: { title: 'Page not found', back: 'Back to the home page' },

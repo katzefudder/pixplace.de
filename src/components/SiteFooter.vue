@@ -10,6 +10,7 @@
       <nav class="footer__links">
         <RouterLink :to="to('imprint')">{{ t.footer.imprint }}</RouterLink>
         <RouterLink :to="to('privacy')">{{ t.footer.privacy }}</RouterLink>
+        <button v-if="tracking" class="footer__consent" type="button" @click="consentOpen = true">{{ t.consent.settings }}</button>
         <a :href="AUTHOR.url">{{ t.footer.personal }}</a>
         <span class="footer__copy">© {{ year }} {{ AUTHOR.name }}</span>
       </nav>
@@ -20,6 +21,7 @@
 <script setup>
 import { useLang } from '../lang.js'
 import { AUTHOR } from '../site.js'
+import { consentOpen, tracking } from '../utils/matomo.js'
 
 const { t, to } = useLang()
 const year = new Date().getFullYear()
@@ -31,6 +33,8 @@ const year = new Date().getFullYear()
 .footer__brand { display: flex; align-items: center; gap: 8px; font-weight: 750; font-stretch: 85%; font-size: 18px; margin: 0 0 4px; }
 .footer .tiny { margin: 0; }
 .footer__links { display: flex; gap: 8px 22px; align-items: center; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
-.footer__links a:hover { color: var(--text); }
+.footer__links a:hover,
+.footer__consent:hover { color: var(--text); }
+.footer__consent { padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; }
 .footer__copy { font-family: var(--mono); font-size: 12px; color: var(--muted2); }
 </style>

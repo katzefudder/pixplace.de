@@ -28,18 +28,25 @@
         </p>
         <p>
           Die Website lädt keine Schriften, Skripte oder Inhalte von Drittanbietern und setzt keine Cookies<span
-          v-if="tracking">, außer denen der unten beschriebenen Reichweitenmessung</span>.
+          v-if="tracking">, außer denen der unten beschriebenen Reichweitenmessung, und auch die nur mit deiner
+          Zustimmung</span>.
         </p>
 
         <template v-if="tracking">
           <h2>Reichweitenmessung mit Matomo</h2>
           <p>
-            Ich nutze eine selbst betriebene Matomo-Installation, um zu sehen, welche Seiten besucht und welche Apps
-            heruntergeladen werden (Art. 6 Abs. 1 lit. f DSGVO). Verarbeitet werden die gekürzte IP-Adresse,
-            Zeitpunkt, besuchte Seiten, Referrer sowie Browser und Gerät. Die Daten werden nicht an Dritte
-            weitergegeben. Matomo kann Cookies setzen, um wiederkehrende Besuche zu erkennen. Du kannst dem jederzeit
-            widersprechen, indem du Cookies für diese Seite blockierst oder in deinem Browser „Do Not Track“
-            aktivierst.
+            Wenn du zustimmst, nutze ich eine selbst betriebene Matomo-Installation (piwik.katzefudder.de), um zu
+            sehen, welche Seiten besucht und welche Apps heruntergeladen werden. Verarbeitet werden die gekürzte
+            IP-Adresse, Zeitpunkt, besuchte Seiten, Referrer sowie Browser und Gerät. Matomo setzt Cookies, um
+            wiederkehrende Besuche zu erkennen. Die Daten werden nicht an Dritte weitergegeben. Rechtsgrundlage ist
+            deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG).
+          </p>
+          <p>
+            Ohne deine Zustimmung wird Matomo gar nicht erst geladen. Deine Entscheidung speichert die Website im
+            lokalen Speicher deines Browsers (Eintrag <code>pixplace-consent</code>), damit sie nicht bei jedem Besuch
+            neu fragt (§ 25 Abs. 2 Nr. 2 TDDDG). Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft
+            widerrufen: über <button class="link inline" type="button" @click="consentOpen = true">Cookie-Einstellungen</button>
+            hier oder unten auf jeder Seite. Dabei werden die Matomo-Cookies gelöscht.
           </p>
         </template>
 
@@ -78,7 +85,7 @@
 <script setup>
 import { useLang } from '../lang.js'
 import { CONTACT_EMAIL, OWNER } from '../site.js'
-import { tracking } from '../utils/matomo.js'
+import { consentOpen, tracking } from '../utils/matomo.js'
 
 const { lang } = useLang()
 </script>
@@ -90,4 +97,5 @@ const { lang } = useLang()
 .legal h2 { font-size: 24px; margin-top: 36px; }
 .legal h2:first-child { margin-top: 0; }
 .legal p { line-height: 1.6; color: var(--muted); }
+.inline { padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
 </style>
