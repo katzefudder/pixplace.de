@@ -23,8 +23,10 @@
           betrieben wird.
         </p>
         <p>
-          Die Domain und ihr DNS liegen bei IONOS SE, Montabaur. Gebaut und veröffentlicht wird die Website mit
-          GitHub Actions; beim Besuch der Website werden dabei keine Daten an GitHub übertragen.
+          Domain und DNS verwalte ich bei Cloudflare, Inc. (San Francisco, USA). Cloudflare übernimmt dabei nur die
+          Namensauflösung: Die Website wird nicht über Cloudflare ausgeliefert, deine Zugriffe gehen direkt an
+          bunny.net. Gebaut und veröffentlicht wird die Website mit GitHub Actions; beim Besuch der Website werden
+          dabei keine Daten an GitHub übertragen.
         </p>
         <p>
           Die Website lädt keine Schriften, Skripte oder Inhalte von Drittanbietern und setzt keine Cookies<span

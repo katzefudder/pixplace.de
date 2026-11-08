@@ -46,11 +46,17 @@ Order matters: the site must be live before the apps and katzefudder.de point to
 3. Optional short links as **Edge Rules** (301): `captioner.pixplace.de/*` → `https://www.pixplace.de/captioner`,
    `designdeck.pixplace.de/*` → `https://www.pixplace.de/designdeck` (add those hostnames to the pull zone).
 
-### 2. DNS (IONOS)
+### 2. DNS (Cloudflare)
 
-- `www.pixplace.de` → `CNAME` to the pull zone's `*.b-cdn.net` hostname.
-- `pixplace.de` (apex): IONOS can't CNAME the apex, so use IONOS' HTTP forwarding (301) to
-  `https://www.pixplace.de`, or point it at Bunny with an A record if you move DNS to Bunny DNS.
+Domain and DNS are managed at Cloudflare. Keep the records **DNS only** (grey cloud): Bunny serves
+the site and its certificate, and the privacy notice says that visits don't go through Cloudflare.
+A proxied (orange) record would change both.
+
+- `www.pixplace.de` → `CNAME` to the pull zone's hostname `pixplace.b-cdn.net`, DNS only.
+- `pixplace.de` (apex): Cloudflare flattens a `CNAME` at the apex, so `@` → `pixplace.b-cdn.net`,
+  DNS only. Add `pixplace.de` as a hostname to the pull zone (free SSL) and redirect it with an
+  Edge Rule (301) to `https://www.pixplace.de`. A Cloudflare Redirect Rule would need a proxied
+  record instead, which then belongs in the privacy notice.
 
 ### 3. GitHub
 
