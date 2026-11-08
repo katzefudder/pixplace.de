@@ -21,6 +21,6 @@ export const OWNER = {
 export const CONTACT_EMAIL = 'flo@katzefudder.de'
 
 // Self-hosted Matomo. Empty siteId = no tracking at all (and the privacy page says so).
-export const MATOMO = { url: 'https://piwik.katzefudder.de/', siteId: '' }
+export const MATOMO = { url: 'https://piwik.katzefudder.de/', siteId: '2' }
 
 export const AUTHOR = { name: 'Florian Dehn', url: 'https://www.katzefudder.de' }
