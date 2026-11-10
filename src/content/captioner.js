@@ -130,8 +130,9 @@ export default {
       {
         title: 'Spieldaten einmal eingeben',
         html:
-          'Ein Template enthält Titel, Ort, Fotograf, Copyright, Hinweise wie Kontakt oder Honorar und zusätzliche ' +
-          'Stichwörter. Es gilt mit einem Schritt für die ganze Auswahl. Eine Beschriftung kopierst du mit ' +
+          'Ein Template enthält Titel, Ort, Fotograf, Copyright, Hinweise wie Kontakt oder Honorar, zusätzliche ' +
+          'Stichwörter und den Anhang an jede Beschreibung: auch ein Foto ohne Beschreibung bekommt so Titel, Ort und ' +
+          'Datum. Es gilt mit einem Schritt für die ganze Auswahl. Eine Beschriftung kopierst du mit ' +
           '<code>⌘⇧C</code> und fügst sie mit <code>⌘⇧V</code> in ein oder viele Fotos ein: die Codes werden je Foto neu ' +
           'aufgelöst, das Datum kommt aus dem Foto. Templates sind einfache Dateien, die du an Kollegen weitergeben kannst.',
       },
@@ -236,7 +237,8 @@ export default {
         title: 'Enter the game data once',
         html:
           'A template holds the headline, venue, photographer, copyright, special instructions such as contact or payment ' +
-          'details, and extra keywords. Apply it to the whole selection in one step. Copy a caption with ' +
+          'details, extra keywords and the suffix added to every caption: even a photo saved without a caption gets ' +
+          'headline, venue and date. Apply it to the whole selection in one step. Copy a caption with ' +
           '<code>⌘⇧C</code> and paste it into one or many photos with <code>⌘⇧V</code>: the codes are resolved again for ' +
           'each photo, and the date comes from the photo itself. Templates are plain files you can pass on to colleagues.',
       },
