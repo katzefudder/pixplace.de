@@ -9,6 +9,7 @@ import HomeView from './views/HomeView.vue'
 const pages = {
   home: HomeView,
   product: () => import('./views/ProductView.vue'),
+  platform: () => import('./views/PlatformView.vue'),
   imprint: () => import('./views/ImprintView.vue'),
   privacy: () => import('./views/PrivacyView.vue'),
 }

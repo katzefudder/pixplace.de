@@ -1,6 +1,6 @@
 # www.pixplace.de
 
-Product site for **Pixplace Captioner** and **Pixplace Design Deck**. Vue 3 + Vite, static build,
+Product site for **Pixplace Captioner**, **Pixplace Design Deck** and the **Pixplace** web platform (`/plattform`). Vue 3 + Vite, static build,
 hosted on Bunny Storage + CDN like katzefudder.de. German at `/`, English under `/en`.
 
 ```sh
@@ -20,10 +20,11 @@ npm run preview
 | `src/seo.js` | Title, description, canonical, hreflang, Open Graph, JSON-LD per route; `applyHead` (client) and `headHtml` (build) |
 | `vite.config.js` | Writes `dist/<route>/index.html` with the right `<head>` (crawlers, link previews), `404.html`, `sitemap.xml` |
 | `src/views/ProductView.vue` | One view for both products, driven by `src/content/<product>.js` |
+| `src/views/PlatformView.vue` | The web platform (no downloads, no prices), driven by `src/content/pixplace.js`; same texts as the handout in the `chuc_de_2022` repo (`docs/handout/`) |
 | `src/components/ReleaseDownloads.vue` | Download buttons; reads `latest.json` of the app's release workflow, falls back to the stable `latest/` names |
 | `src/components/PriceTable.vue` | Prices + “Request” button (prefilled email until there is a shop) |
 | `public/images/<product>/` | Screenshots (Captioner: `scripts/manual_screenshots.py en --website public/images/captioner`; Design Deck: `make screenshots SITE=…`) |
-| `public/handouts/` | Handouts and Captioner manuals (copies of the PDFs in the app repos) |
+| `public/handouts/` | Handouts and Captioner manuals (copies of the PDFs in the app repos; `Pixplace-Handout.pdf` from `chuc_de_2022/docs/handout/`) |
 
 Content strings with markup are rendered with `v-html`. They are static, never put user input in there.
 

@@ -3,7 +3,7 @@
 export const ui = {
   de: {
     locale: 'de-DE',
-    nav: { captioner: 'Captioner', designdeck: 'Design Deck', prices: 'Preise', contact: 'Kontakt' },
+    nav: { captioner: 'Captioner', designdeck: 'Design Deck', platform: 'Plattform', prices: 'Preise', contact: 'Kontakt' },
     langSwitch: 'English',
     footer: {
       tagline: 'Desktop-Werkzeuge für Fotografen. Gemacht in Hessen von einem Sportfotografen.',
@@ -42,7 +42,7 @@ export const ui = {
   },
   en: {
     locale: 'en-GB',
-    nav: { captioner: 'Captioner', designdeck: 'Design Deck', prices: 'Pricing', contact: 'Contact' },
+    nav: { captioner: 'Captioner', designdeck: 'Design Deck', platform: 'Platform', prices: 'Pricing', contact: 'Contact' },
     langSwitch: 'Deutsch',
     footer: {
       tagline: 'Desktop tools for photographers. Made in Hesse, Germany, by a sports photographer.',

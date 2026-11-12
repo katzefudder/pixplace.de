@@ -11,6 +11,8 @@ export const routes = [
   { path: '/en/captioner', key: 'captioner', lang: 'en', page: 'product', product: 'captioner' },
   { path: '/designdeck', key: 'designdeck', lang: 'de', page: 'product', product: 'designdeck' },
   { path: '/en/designdeck', key: 'designdeck', lang: 'en', page: 'product', product: 'designdeck' },
+  { path: '/plattform', key: 'platform', lang: 'de', page: 'platform' },
+  { path: '/en/platform', key: 'platform', lang: 'en', page: 'platform' },
   // legal pages exist in German only, the English footer links to them
   { path: '/impressum', key: 'imprint', lang: 'de', page: 'imprint' },
   { path: '/datenschutz', key: 'privacy', lang: 'de', page: 'privacy' },

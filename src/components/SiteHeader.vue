@@ -20,6 +20,7 @@
       <nav id="site-nav" class="nav" :class="{ 'nav--open': open }" @click="open = false">
         <RouterLink class="nav__page" :to="to('captioner')">{{ t.nav.captioner }}</RouterLink>
         <RouterLink class="nav__page" :to="to('designdeck')">{{ t.nav.designdeck }}</RouterLink>
+        <RouterLink class="nav__page" :to="to('platform')">{{ t.nav.platform }}</RouterLink>
         <RouterLink :to="to('home', '#prices')">{{ t.nav.prices }}</RouterLink>
         <RouterLink :to="to('home', '#contact')">{{ t.nav.contact }}</RouterLink>
         <RouterLink class="nav__lang" :to="other" :hreflang="lang === 'de' ? 'en' : 'de'" :title="t.langSwitch">

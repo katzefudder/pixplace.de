@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" :class="layout === 'figures' ? 'figures' : 'thumbs'">
+  <div :id="id" :class="layout === 'figures' ? ['figures', { 'figures--even': even }] : 'thumbs'">
     <template v-if="layout === 'figures'">
       <figure v-for="img in images" :key="img.src" :class="['figure', { 'figure--wide': img.wide }]">
         <a class="pswp-item" :href="img.src" :data-pswp-width="img.width" :data-pswp-height="img.height"
@@ -30,6 +30,7 @@ const props = defineProps({
   id: { type: String, required: true },
   images: { type: Array, required: true },
   layout: { type: String, default: 'grid' }, // grid: square thumbnails; figures: full images with captions
+  even: { type: Boolean, default: false }, // figures: two equal columns (screenshots of the same aspect ratio)
 })
 const { lang, t } = useLang()
 
@@ -79,6 +80,7 @@ onBeforeUnmount(() => lightbox?.destroy())
   gap: 32px 24px;
   margin-top: 24px;
 }
+.figures--even { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .figure { margin: 0; min-width: 0; }
 .figure--wide { grid-column: 1 / -1; }
 .figure a { display: block; background: var(--bg2); border: 1px solid var(--line); padding: 10px; transition: border-color .15s; }

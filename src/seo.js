@@ -6,8 +6,10 @@ import { alternates, findRoute, routes } from './routes.js'
 import home from './content/home.js'
 import captioner from './content/captioner.js'
 import designdeck from './content/designdeck.js'
+import platform from './content/pixplace.js'
 
 export const products = { captioner, designdeck }
+export { platform }
 
 const OG_LOCALE = { de: 'de_DE', en: 'en_GB' }
 const abs = (path) => SITE_URL + (path === '/' ? '/' : path)
@@ -52,6 +54,28 @@ function pageMeta(route) {
       image: product.ogImage,
       imageAlt: text.ogAlt,
       jsonLd: productLd(product, lang, route),
+    }
+  }
+  if (route.page === 'platform') {
+    const text = platform[lang]
+    return {
+      title: text.title,
+      description: text.description,
+      ogDescription: text.ogDescription,
+      image: platform.ogImage,
+      imageAlt: text.ogAlt,
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: platform.name,
+        applicationCategory: 'MultimediaApplication',
+        operatingSystem: 'Web',
+        description: text.description,
+        inLanguage: lang,
+        url: abs(route.path),
+        image: SITE_URL + platform.ogImage.src,
+        author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
+      },
     }
   }
   if (route.page === 'home') {
