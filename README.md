@@ -23,7 +23,7 @@ npm run preview
 | `src/views/PlatformView.vue` | The web platform (no downloads, no prices), driven by `src/content/pixplace.js`; same texts as the handout in the `chuc_de_2022` repo (`docs/handout/`) |
 | `src/components/ReleaseDownloads.vue` | Download buttons; reads `latest.json` of the app's release workflow, falls back to the stable `latest/` names |
 | `src/components/PriceTable.vue` | Prices + “Request” button (prefilled email until there is a shop) |
-| `public/images/<product>/` | Screenshots (Captioner: `scripts/manual_screenshots.py en --website public/images/captioner`; Design Deck: `make screenshots SITE=…`) |
+| `public/images/<product>/` | Screenshots (Captioner: `scripts/manual_screenshots.py en --website public/images/captioner`; Design Deck: `make screenshots SITE=…`; platform: `scripts/platform-screenshots.mjs` against the local chuc.de stack) |
 | `public/handouts/` | Handouts and Captioner manuals (copies of the PDFs in the app repos; `Pixplace-Handout.pdf` from `chuc_de_2022/docs/handout/`) |
 
 Content strings with markup are rendered with `v-html`. They are static, never put user input in there.

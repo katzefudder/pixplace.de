@@ -62,6 +62,28 @@ const screens = [
       en: 'Upload in the browser: name the gallery, drop the photos.',
     },
   },
+  {
+    name: 'themes', width: 2400, height: 1500,
+    alt: {
+      de: 'Backend, Einstellungen: sechs Farbschemata als Vorschaukacheln, gewählt ist Rot-Schwarz-Weiß, darunter Logo-Upload und die Wahl zwischen heller und dunkler Darstellung',
+      en: 'Back end, settings: six colour schemes as preview tiles, red-black-white selected, logo upload and the choice between light and dark display below',
+    },
+    caption: {
+      de: 'Eigenes Erscheinungsbild: Farbschema und Logo wählen, gilt sofort für alle Besucher.',
+      en: 'Your own look: pick a colour scheme and logo, it applies to all visitors right away.',
+    },
+  },
+  {
+    name: 'dark', width: 2400, height: 1500,
+    alt: {
+      de: 'Dieselbe Galerie in dunkler Darstellung: Fotos mit Fotograf, Bildunterschrift und Knöpfen für Download, Sammlung und Link',
+      en: 'The same gallery in dark mode: photos with photographer, caption and buttons for download, collection and link',
+    },
+    caption: {
+      de: 'Hell oder dunkel: Besucher schalten selbst um, sonst gilt die Vorgabe aus dem Backend.',
+      en: 'Light or dark: visitors switch for themselves, otherwise the back end setting applies.',
+    },
+  },
 ].map((s) => ({ ...s, src: `${shots}/pixplace-${s.name}.jpg`, thumb: `${shots}/pixplace-${s.name}-thumb.jpg` }))
 
 export default {
