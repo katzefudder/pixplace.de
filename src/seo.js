@@ -83,12 +83,13 @@ function pageMeta(route) {
     return {
       title: text.title,
       description: text.description,
-      image: captioner.ogImage,
+      image: platform.ogImage,
       imageAlt: text.ogAlt,
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: 'Pixplace',
+        description: text.description,
         url: abs(route.path),
         inLanguage: lang,
         publisher: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },

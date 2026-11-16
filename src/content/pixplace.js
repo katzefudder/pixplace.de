@@ -196,8 +196,18 @@ export default {
     usesLabel: 'Im Einsatz',
     usesTitle: 'Hier arbeitet Pixplace',
     uses: [
+      {
+        name: 'DEL2',
+        site: 'del-2.org',
+        text:
+          'Pixplace hält die Fotos jedes Spiels von jedem offiziellen Fotografen der Liga zentral an einem Ort. Die ' +
+          'Medienbeauftragten der Clubs finden ligaweit passende Fotos für ihre Beiträge in sozialen Medien und ' +
+          'klassischen Medien, merken sie sich und laden sie herunter. Über die Zeit ist ein großes Archiv entstanden, ' +
+          'auf das sich die Clubs beim Storytelling verlassen können. Die Plattform ist nicht öffentlich zugänglich.',
+        facts: ['21 Fotografen', 'jedes Spiel', 'ligaweites Archiv'],
+        link: { href: 'https://www.del-2.org/fotografen/', label: 'Die Fotografen der DEL2' },
+      },
       { name: 'Chuc Sport- und Pressefotografie', site: 'chuc.de', href: 'https://chuc.de', text: 'Veröffentlicht die eigenen Galerien öffentlich, mit Suche, Sammlung und Download für angemeldete Nutzer.' },
-      { name: 'DEL2', site: 'del-2.org', text: 'Sammelt die Fotos der akkreditierten Standortfotografen aller Clubs in einer zentralen Datenbank und stellt sie einem festen Nutzerkreis zur Verfügung. Die Plattform ist nicht öffentlich zugänglich.' },
     ],
   },
 
@@ -323,8 +333,18 @@ export default {
     usesLabel: 'In use',
     usesTitle: 'Where Pixplace works',
     uses: [
+      {
+        name: 'DEL2',
+        site: 'del-2.org',
+        text:
+          'Pixplace keeps the photos of every game by every official photographer of the league in one central place. ' +
+          'The clubs\' media officers find fitting photos from across the league for their social media posts and for ' +
+          'traditional media, collect them and download them. Over time this has grown into a large archive the clubs ' +
+          'rely on for their storytelling. The platform is not publicly accessible.',
+        facts: ['21 photographers', 'every game', 'league-wide archive'],
+        link: { href: 'https://www.del-2.org/fotografen/', label: 'The DEL2 photographers' },
+      },
       { name: 'Chuc Sport- und Pressefotografie', site: 'chuc.de', href: 'https://chuc.de', text: 'Publishes its own galleries to the public, with search, collection and download for signed-in users.' },
-      { name: 'DEL2', site: 'del-2.org', text: 'Collects the photos of every club\'s accredited venue photographers in one central database and makes them available to a fixed group of users. The platform is not publicly accessible.' },
     ],
   },
 }

@@ -1,12 +1,14 @@
-// Texts that appear on every page (header, footer, download and price blocks).
+// Texts that appear on every page (header, footer, download and price blocks, demo request).
+
+import { CONTACT_EMAIL } from '../site.js'
 
 export const ui = {
   de: {
     locale: 'de-DE',
-    nav: { captioner: 'Captioner', designdeck: 'Design Deck', platform: 'Plattform', prices: 'Preise', contact: 'Kontakt' },
+    nav: { captioner: 'Captioner', designdeck: 'Design Deck', platform: 'Plattform', contact: 'Kontakt' },
     langSwitch: 'English',
     footer: {
-      tagline: 'Desktop-Werkzeuge für Fotografen. Gemacht in Hessen von einem Sportfotografen.',
+      tagline: 'Content Management über Fotos. Gemacht in Hessen von einem Sportfotografen.',
       imprint: 'Impressum',
       privacy: 'Datenschutz',
       personal: 'Über mich: katzefudder.de',
@@ -37,15 +39,21 @@ export const ui = {
       reject: 'Ablehnen',
       settings: 'Cookie-Einstellungen',
     },
+    demo: {
+      label: 'Demo anfragen',
+      mailSubject: 'Demo Pixplace',
+      mailBody:
+        'Hallo,\n\nich interessiere mich für Pixplace.\n\nWas ich fotografiere:\nWer meine Fotos braucht:\nUngefähr so viele Fotos im Monat:\n\nViele Grüße',
+    },
     gallery: { open: 'Vergrößern' },
     notFound: { title: 'Seite nicht gefunden', back: 'Zur Startseite' },
   },
   en: {
     locale: 'en-GB',
-    nav: { captioner: 'Captioner', designdeck: 'Design Deck', platform: 'Platform', prices: 'Pricing', contact: 'Contact' },
+    nav: { captioner: 'Captioner', designdeck: 'Design Deck', platform: 'Platform', contact: 'Contact' },
     langSwitch: 'Deutsch',
     footer: {
-      tagline: 'Desktop tools for photographers. Made in Hesse, Germany, by a sports photographer.',
+      tagline: 'Content management through photos. Made in Hesse, Germany, by a sports photographer.',
       imprint: 'Legal notice (German)',
       privacy: 'Privacy (German)',
       personal: 'About me: katzefudder.de',
@@ -75,6 +83,12 @@ export const ui = {
       reject: 'Decline',
       settings: 'Cookie settings',
     },
+    demo: {
+      label: 'Request a demo',
+      mailSubject: 'Pixplace demo',
+      mailBody:
+        'Hello,\n\nI am interested in Pixplace.\n\nWhat I photograph:\nWho needs my photos:\nRoughly how many photos a month:\n\nBest regards',
+    },
     gallery: { open: 'Enlarge' },
     notFound: { title: 'Page not found', back: 'Back to the home page' },
   },
@@ -83,4 +97,10 @@ export const ui = {
 // '{name}' placeholders, like the apps' _('…').format(…)
 export function fill(text, values) {
   return text.replace(/\{(\w+)\}/g, (m, k) => (k in values ? values[k] : m))
+}
+
+// Prefilled email for a platform demo (no form or booking tool yet).
+export function demoHref(lang) {
+  const d = ui[lang].demo
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(d.mailSubject)}&body=${encodeURIComponent(d.mailBody)}`
 }

@@ -11,10 +11,10 @@
           <p class="lead">{{ text.lead }}</p>
           <p class="muted hero__intro">{{ text.intro }}</p>
           <div class="hero__cta">
-            <a class="btn btn--primary" :href="platform.handout" target="_blank" rel="noopener" @click="trackHandout">
+            <a class="btn btn--primary" :href="demoHref(lang)" @click="trackDemo">{{ t.demo.label }}</a>
+            <a class="btn" :href="platform.handout" target="_blank" rel="noopener" @click="trackHandout">
               {{ text.handoutLabel }}
             </a>
-            <RouterLink class="btn" :to="to('home', '#contact')">{{ text.contactLabel }}</RouterLink>
           </div>
         </div>
       </div>
@@ -129,6 +129,10 @@
             <a v-if="use.href" class="link uses__site" :href="use.href" rel="noopener">{{ use.site }}</a>
             <span v-else class="uses__site">{{ use.site }}</span>
             <p class="muted">{{ use.text }}</p>
+            <ul v-if="use.facts" class="uses__facts">
+              <li v-for="f in use.facts" :key="f">{{ f }}</li>
+            </ul>
+            <a v-if="use.link" class="link uses__more" :href="use.link.href" rel="noopener">{{ use.link.label }} →</a>
           </li>
         </ul>
       </div>
@@ -140,17 +144,22 @@
 import { computed } from 'vue'
 
 import ScreenshotGallery from '../components/ScreenshotGallery.vue'
+import { demoHref } from '../content/ui.js'
 import { useLang } from '../lang.js'
 import { platform, products } from '../seo.js'
 import { trackEvent } from '../utils/matomo.js'
 
-const { lang, to } = useLang()
+const { lang, t, to } = useLang()
 const text = computed(() => platform[lang.value])
 const family = [
   { key: 'captioner', name: products.captioner.name, logo: products.captioner.logo },
   { key: 'platform', name: platform.name, logo: platform.logo },
   { key: 'designdeck', name: products.designdeck.name, logo: products.designdeck.logo },
 ]
+
+function trackDemo() {
+  trackEvent(platform.matomoCategory, 'Demo request', 'platform')
+}
 
 function trackHandout() {
   trackEvent(platform.matomoCategory, 'Download', 'handout')
@@ -285,5 +294,8 @@ function trackHandout() {
 .uses h3 { margin-bottom: 6px; }
 .uses__site { display: inline-block; font-family: var(--mono); font-size: 14px; margin-bottom: 8px; }
 .uses li p { margin: 0; max-width: 60ch; }
+.uses .uses__facts { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; border: 0; }
+.uses .uses__facts li { padding: 3px 10px; border: 1px solid var(--line2); border-radius: 999px; font-family: var(--mono); font-size: 12.5px; color: var(--text); }
+.uses__more { display: inline-block; margin-top: 14px; font-size: 15px; font-weight: 600; }
 @media (max-width: 900px) { .uses { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
 </style>

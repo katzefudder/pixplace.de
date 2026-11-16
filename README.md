@@ -16,7 +16,7 @@ npm run preview
 |---|---|
 | `src/site.js` | Everything external: site URL, download base, contact, imprint data, Matomo |
 | `src/routes.js` | Route table without components; used by the router **and** the build |
-| `src/content/*.js` | All texts, per language (`de`/`en`): `ui.js` (header, footer, buttons), `home.js`, `captioner.js`, `designdeck.js` (incl. prices, screenshots, download file names) |
+| `src/content/*.js` | All texts, per language (`de`/`en`): `ui.js` (header, footer, buttons, demo request mail), `home.js` (platform first, apps as companions), `captioner.js`, `designdeck.js` (incl. prices, screenshots, download file names) |
 | `src/seo.js` | Title, description, canonical, hreflang, Open Graph, JSON-LD per route; `applyHead` (client) and `headHtml` (build) |
 | `vite.config.js` | Writes `dist/<route>/index.html` with the right `<head>` (crawlers, link previews), `404.html`, `sitemap.xml` |
 | `src/views/ProductView.vue` | One view for both products, driven by `src/content/<product>.js` |

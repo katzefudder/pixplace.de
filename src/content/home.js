@@ -1,126 +1,192 @@
-// Home page: both products, how they fit together, what they have in common.
+// Home page: the Pixplace platform first (content management through photos), the two desktop
+// apps as companions further down. Platform prices are not public yet (calculation open), so
+// the page asks for a demo instead.
 
 export default {
   de: {
-    title: 'Pixplace – Werkzeuge für Sportfotografen | Captioner & Design Deck',
+    title: 'Pixplace – Content Management über Fotos | Fotoplattform für Fotografen, Vereine und Ligen',
     description:
-      'Pixplace macht Desktop-Apps für Fotografen: Pixplace Captioner beschriftet Sportfotos im Tastaturtempo, ' +
-      'Pixplace Design Deck macht daraus Instagram-Karussells. Für macOS und Windows, mit kostenloser Testversion.',
-    ogAlt: 'Pixplace Captioner und Pixplace Design Deck',
-    kicker: 'Pixplace · Werkzeuge für Fotografen',
-    heading: 'Nach dem Schlusspfiff schnell fertig.',
+      'Mit Pixplace entsteht beim Hochladen Content: Aus den Metadaten deiner Fotos werden Galerien, Suche und ' +
+      'Benachrichtigungen, in Sekunden. Für Fotografen, Agenturen, Vereine, Redaktionen und Ligen. Gehostet in Deutschland ' +
+      'oder auf deinem eigenen Server.',
+    ogAlt: 'Eine Galerie auf chuc.de, veröffentlicht mit Pixplace',
+    kicker: 'Pixplace · Content Management über Fotos',
+    heading: 'Beim Hochladen entsteht Content.',
     lead:
-      'Zwei Desktop-Apps für alles, was nach dem Spiel kommt: Bilder sichten und beschriften für Presse und Vereine, ' +
-      'und daraus einen Instagram-Post machen, der nicht abgeschnitten wird.',
-    heroPhoto: {
-      alt: 'Eishockey, DEL 2: zwei Spieler im Zweikampf an der Bande, im Hintergrund unscharf das Spielfeld',
-      caption: 'Zweikampf an der Bande · DEL 2',
-      credit: 'Foto: Florian Dehn',
+      'Du lädst fertig beschriftete Fotos hoch, Pixplace macht daraus Galerien, Suche und Benachrichtigungen. Kein CMS, ' +
+      'keine Galerie von Hand: Die Bildunterschrift im Foto ist die ganze Redaktionsarbeit.',
+    platformMore: 'So funktioniert Pixplace',
+    heroShot: {
+      alt: 'Galerieseite auf chuc.de: großes Titelfoto vom Spiel EC Bad Nauheim gegen EV Landshut mit Datum, Ort und Anzahl der Fotos',
+      caption: 'Eine Galerie auf chuc.de · Titel, Datum und Ort aus den Fotos',
     },
+    labels: {
+      content: 'Aus einem Foto',
+      flow: 'Ablauf',
+      audience: 'Für wen',
+      uses: 'Im Einsatz',
+      companions: 'Dazu passend',
+      contact: 'Kontakt',
+    },
+
+    contentTitle: 'Was im Foto steht, steht danach auf der Seite.',
+    contentText:
+      'Pixplace liest beim Upload EXIF und IPTC aus und baut daraus die Inhalte. Niemand legt Galerien an, tippt Titel ab ' +
+      'oder verschlagwortet ein zweites Mal.',
+    contentHeads: { input: 'Im Foto', output: 'Daraus wird' },
+    contentRows: [
+      { field: 'Ordner', value: '20261108_ECN_DEG', result: 'eine Galerie mit eigener Seite und eigenem Link' },
+      { field: 'Aufnahmezeit · EXIF', value: '08.11.2026, 19:42', result: 'Datum der Galerie, neueste Fotos zuerst' },
+      { field: 'Bildunterschrift · IPTC', value: 'Max Müller (ECN) nach seinem Tor zum 2:1', result: 'Treffer für „Müller“, „Mueller“ und „Tore“, über alle Galerien' },
+      { field: 'Schlagwörter · IPTC', value: 'Torjubel, Heimspiel', result: 'anklickbare Schlagwörter und Kategorien' },
+      { field: 'Fotograf · IPTC', value: 'Florian Dehn', result: 'Credit unter jedem Foto, Wasserzeichen auf der Vorschau' },
+      { field: 'Upload fertig', value: '148 Fotos', result: 'Meldung an Presse und Vereine, live oder per Mail' },
+    ],
+
+    flowTitle: 'Je schneller in Umlauf, desto besser für den Fotografen.',
+    flow: [
+      { edge: 'Vor Ort', title: 'Beschriften', text: 'Am Spielfeldrand, im Graben oder am Set: Bildunterschrift und Schlagwörter ins Foto schreiben.' },
+      { edge: 'Upload', title: 'Hochladen', text: 'Fertige JPEGs ins Browserfenster ziehen oder per SFTP, auch automatisch aus Lightroom.' },
+      { edge: 'Pixplace', title: 'Content entsteht', text: 'Galerie, Vorschaubilder, Wasserzeichen und Suchindex, in Sekunden.' },
+      { edge: 'Pixplace', title: 'Kunden informiert', text: 'Die neue Galerie erscheint live als Hinweis oder kommt per Mail.' },
+      { edge: 'Abnehmer', title: 'In Umlauf', text: 'Presse und Vereine suchen, sammeln, laden als ZIP oder teilen per Link.' },
+    ],
+
+    audienceTitle: 'Für alle, deren Fotos schnell ankommen müssen.',
+    audience: [
+      { title: 'Fotografen', text: 'Sport, Konzert, Event, Presse: deine Fotos online und auffindbar, bevor du den Platz verlässt.' },
+      { title: 'Teams und Agenturen', text: 'Mehrere Fotografen, ein Bestand. Jeder sieht seine Uploads, die Suche läuft über alle.' },
+      { title: 'Vereine und Redaktionen', text: 'Das richtige Foto für Artikel und Post, gesucht nach Name statt geblättert nach Datum.' },
+      { title: 'Ligen und Verbände', text: 'Die Fotos aller Clubs in einer geschlossenen Datenbank, mit Rollen und festem Nutzerkreis.' },
+    ],
+    hosting:
+      'Gehostet in Deutschland oder auf deinem eigenen Server. Öffentlich sind nur Vorschaubilder mit Wasserzeichen, ' +
+      'Originale gibt es erst nach dem Login.',
+
+    companionsTitle: 'Zwei Apps für davor und danach',
+    companionsText:
+      'Captioner schreibt die Bildunterschriften, aus denen Pixplace seine Inhalte baut. Design Deck macht aus denselben ' +
+      'Fotos einen Instagram-Post. Beide laufen auf macOS und Windows, mit kostenloser Testversion und ohne Abo.',
     demo: {
       typed: 'Zweikampf um den Puck #bi99# gegen #bn23#',
       result: 'Zweikampf um den Puck -99- John Doe (Bietigheim Steelers) gegen -23- Marius Erk (EC Bad Nauheim)',
       typedLabel: 'Getippt',
       resultLabel: 'Gespeichert',
     },
-    labels: { workflow: 'Ablauf', common: 'Für beide', prices: 'Preise', contact: 'Kontakt' },
     products: {
       captioner: {
-        tagline: 'Sichten und beschriften',
+        tagline: 'Davor: sichten und beschriften',
         text:
           'Roster-Codes statt Spielernamen tippen, Titel, Ort und Rechte einmal per Template, Sterne und Farbklassen über ' +
           'die Tastatur. Die Metadaten gehen als IPTC/XMP direkt nach Lightroom.',
         more: 'Mehr zu Captioner',
       },
       designdeck: {
-        tagline: 'Instagram-Karussells gestalten',
+        tagline: 'Danach: Instagram-Karussells gestalten',
         text:
           'Ränder, Raster, Collagen und Panoramen über bis zu zehn Bilder, dazu Texte, Logos und Wasserzeichen. Jede ' +
           'Kachel wird ein fertiges JPG in der Reihenfolge des Posts.',
         more: 'Mehr zu Design Deck',
       },
     },
-    workflowTitle: 'Von der Karte bis zum Post',
-    workflow: [
-      { title: 'Speicherkarte', text: 'Karte einstecken, Ordner in Captioner öffnen. RAW und JPG sind eine Kachel.' },
-      { title: 'Sichten', text: 'Sterne, Farbklassen, Markierung – alles über die Tastatur, Filter nach Kamera und Zeit.' },
-      { title: 'Beschriften', text: 'Codes wie #bi99# werden zu Namen, das Template ergänzt Titel, Ort und Rechte.' },
-      { title: 'Lightroom & Presse', text: 'Auswahl in die Fotosoftware ziehen, die Metadaten kommen mit.' },
-      { title: 'Instagram', text: 'Die besten Bilder in Design Deck als Karussell anlegen und hochladen.' },
-    ],
-    commonTitle: 'Was beide Apps gemeinsam haben',
-    common: [
-      { title: 'Erst testen', text: 'Die Testversion läuft ohne Anmeldung und ohne Zeitlimit, mit klaren Grenzen.' },
-      { title: 'Kein Abo', text: 'Eine Lizenz gilt für 1, 3 oder 12 Monate ab Ausstellung und verlängert sich nicht von selbst.' },
-      { title: 'Kein Konto', text: 'Der Lizenzschlüssel wird offline geprüft. Deine Fotos verlassen nie deinen Rechner.' },
-      { title: 'macOS und Windows', text: 'Mac mit Apple Silicon und Windows 64 Bit, Oberfläche auf Deutsch und Englisch.' },
-    ],
-    pricesTitle: 'Preise',
-    pricesText: 'Lizenzen laufen ab dem Ausstellungstag. Preise inkl. 19 % MwSt.',
-    contactTitle: 'Kontakt',
+    pricesLink: 'Preise und Testversion',
+
+    contactTitle: 'Pixplace mit deinen Fotos sehen',
     contactText:
-      'Fragen, Wünsche, ein Fehler gefunden oder eine Lizenz gewünscht? Schreib mir eine E-Mail. Ich bin selbst ' +
-      'Sportfotograf und baue die Apps für meine eigene Arbeit an der Bande.',
+      'Schreib mir, was du fotografierst und wer deine Fotos braucht. Ich zeige dir Pixplace und richte dir einen ' +
+      'Testzugang ein. Fragen zu Captioner und Design Deck oder eine Lizenz? Gleiche Adresse. Ich bin selbst ' +
+      'Sportfotograf und baue Pixplace für meine eigene Arbeit an der Bande.',
   },
   en: {
-    title: 'Pixplace – Tools for Sports Photographers | Captioner & Design Deck',
+    title: 'Pixplace – Content Management Through Photos | Photo Platform for Photographers, Clubs and Leagues',
     description:
-      'Pixplace makes desktop apps for photographers: Pixplace Captioner captions sports photos at keyboard speed, ' +
-      'Pixplace Design Deck turns them into Instagram carousels. For macOS and Windows, with a free trial.',
-    ogAlt: 'Pixplace Captioner and Pixplace Design Deck',
-    kicker: 'Pixplace · Tools for photographers',
-    heading: 'Done soon after the final whistle.',
+      'With Pixplace, uploading creates content: your photos\' metadata becomes galleries, search and notifications, in ' +
+      'seconds. For photographers, agencies, clubs, newsrooms and leagues. Hosted in Germany or on your own server.',
+    ogAlt: 'A gallery on chuc.de, published with Pixplace',
+    kicker: 'Pixplace · Content management through photos',
+    heading: 'Uploading creates content.',
     lead:
-      'Two desktop apps for everything after the game: cull and caption photos for the press and clubs, then turn them ' +
-      'into an Instagram post that doesn\'t get cropped.',
-    heroPhoto: {
-      alt: 'Ice hockey, DEL 2: two players battling along the boards, the rink blurred behind them',
-      caption: 'Battle along the boards · DEL 2',
-      credit: 'Photo: Florian Dehn',
+      'You upload finished, captioned photos, Pixplace turns them into galleries, search and notifications. No CMS, no ' +
+      'galleries built by hand: the caption in the photo is all the editing it takes.',
+    platformMore: 'How Pixplace works',
+    heroShot: {
+      alt: 'Gallery page on chuc.de: large cover photo of the game EC Bad Nauheim vs EV Landshut with date, venue and photo count',
+      caption: 'A gallery on chuc.de · headline, date and venue from the photos',
     },
+    labels: {
+      content: 'From one photo',
+      flow: 'Workflow',
+      audience: 'Who it\'s for',
+      uses: 'In use',
+      companions: 'Companion apps',
+      contact: 'Contact',
+    },
+
+    contentTitle: 'What\'s in the photo ends up on the page.',
+    contentText:
+      'On upload Pixplace reads EXIF and IPTC and builds the content from them. Nobody creates galleries, retypes headlines ' +
+      'or adds keywords a second time.',
+    contentHeads: { input: 'In the photo', output: 'Becomes' },
+    contentRows: [
+      { field: 'Folder', value: '20261108_ECN_DEG', result: 'a gallery with its own page and link' },
+      { field: 'Capture time · EXIF', value: '08 Nov 2026, 19:42', result: 'the gallery date, newest photos first' },
+      { field: 'Caption · IPTC', value: 'Max Müller (ECN) after his goal for 2–1', result: 'hits for “Müller”, “Mueller” and the typo “Muler”, across all galleries' },
+      { field: 'Keywords · IPTC', value: 'goal celebration, home game', result: 'clickable keywords and categories' },
+      { field: 'Photographer · IPTC', value: 'Florian Dehn', result: 'a credit under every photo, a watermark on the preview' },
+      { field: 'Upload done', value: '148 photos', result: 'a notice to press and clubs, live or by email' },
+    ],
+
+    flowTitle: 'The sooner photos are out, the better for the photographer.',
+    flow: [
+      { edge: 'On site', title: 'Caption', text: 'At the rink, in the pit or on set: write caption and keywords into the photo.' },
+      { edge: 'Upload', title: 'Upload', text: 'Drag finished JPEGs into the browser or send them via SFTP, also straight from Lightroom.' },
+      { edge: 'Pixplace', title: 'Content appears', text: 'Gallery, previews, watermark and search index, in seconds.' },
+      { edge: 'Pixplace', title: 'Clients notified', text: 'The new gallery shows up live as a notice or arrives by email.' },
+      { edge: 'Clients', title: 'Out there', text: 'Press and clubs search, collect, download as a ZIP or share by link.' },
+    ],
+
+    audienceTitle: 'For everyone whose photos need to arrive fast.',
+    audience: [
+      { title: 'Photographers', text: 'Sports, concerts, events, press: your photos online and findable before you leave the venue.' },
+      { title: 'Teams and agencies', text: 'Several photographers, one archive. Each sees their own uploads, search covers all of them.' },
+      { title: 'Clubs and newsrooms', text: 'The right photo for the article or post, searched by name instead of paged through by date.' },
+      { title: 'Leagues and federations', text: 'Every club\'s photos in one closed database, with roles and a fixed group of users.' },
+    ],
+    hosting:
+      'Hosted in Germany or on your own server. Only watermarked previews are public, originals only after login.',
+
+    companionsTitle: 'Two apps for before and after',
+    companionsText:
+      'Captioner writes the captions Pixplace builds its content from. Design Deck turns the same photos into an Instagram ' +
+      'post. Both run on macOS and Windows, with a free trial and no subscription.',
     demo: {
       typed: 'Battle for the puck #bi99# vs #bn23#',
       result: 'Battle for the puck -99- John Doe (Bietigheim Steelers) vs -23- Marius Erk (EC Bad Nauheim)',
       typedLabel: 'Typed',
       resultLabel: 'Saved',
     },
-    labels: { workflow: 'Workflow', common: 'Both apps', prices: 'Pricing', contact: 'Contact' },
     products: {
       captioner: {
-        tagline: 'Cull and caption',
+        tagline: 'Before: cull and caption',
         text:
           'Type roster codes instead of player names, set headline, venue and rights once with a template, rate and label ' +
           'from the keyboard. The metadata goes straight into Lightroom as IPTC/XMP.',
         more: 'More about Captioner',
       },
       designdeck: {
-        tagline: 'Design Instagram carousels',
+        tagline: 'After: design Instagram carousels',
         text:
           'Borders, grids, collages and panoramas across up to ten slides, plus texts, logos and a watermark. Every tile ' +
           'becomes a finished JPG in posting order.',
         more: 'More about Design Deck',
       },
     },
-    workflowTitle: 'From the card to the post',
-    workflow: [
-      { title: 'Memory card', text: 'Insert the card, open the folder in Captioner. RAW and JPG show as one tile.' },
-      { title: 'Cull', text: 'Stars, color classes, tags – all from the keyboard, filtered by camera and time.' },
-      { title: 'Caption', text: 'Codes like #bi99# become names, the template adds headline, venue and rights.' },
-      { title: 'Lightroom & press', text: 'Drag the selection into your photo software, the metadata comes along.' },
-      { title: 'Instagram', text: 'Lay out the best shots as a carousel in Design Deck and upload.' },
-    ],
-    commonTitle: 'What both apps have in common',
-    common: [
-      { title: 'Try first', text: 'The trial runs without sign-up and without a time limit, with clear limits on what it does.' },
-      { title: 'No subscription', text: 'A license runs 1, 3 or 12 months from the day of issue and never renews by itself.' },
-      { title: 'No account', text: 'The license key is checked offline. Your photos never leave your computer.' },
-      { title: 'macOS and Windows', text: 'Macs with Apple Silicon and 64-bit Windows, interface in English and German.' },
-    ],
-    pricesTitle: 'Pricing',
-    pricesText: 'Licenses run from the day of issue. Prices include 19% German VAT.',
-    contactTitle: 'Contact',
+    pricesLink: 'Pricing and free trial',
+
+    contactTitle: 'See Pixplace with your photos',
     contactText:
-      'Questions, ideas, found a bug or want a license? Send me an email. I\'m a sports photographer myself and build ' +
-      'these apps for my own work at the rink.',
+      'Tell me what you photograph and who needs your photos. I\'ll show you Pixplace and set up a trial account. ' +
+      'Questions about Captioner and Design Deck or want a license? Same address. I\'m a sports photographer myself and ' +
+      'build Pixplace for my own work at the rink.',
   },
 }
